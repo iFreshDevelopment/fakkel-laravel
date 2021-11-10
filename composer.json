@@ -1,0 +1,27 @@
+{
+    "name": "ifresh/fakkel-laravel",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Ifresh\\FakkelLaravel\\": "src/"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Stephan Bouman",
+            "email": "webdev@ifresh.nl"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ifresh\\FakkelLaravel\\FakkelServiceProvider"
+            ]
+        }
+    }
+}
