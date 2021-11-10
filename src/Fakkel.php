@@ -7,6 +7,7 @@ use Carbon\Carbon;
 class Fakkel {
 
     protected ?string $channelId = null;
+
     protected ?int $timeout = null;
 
     public Entry $entry;
@@ -64,7 +65,13 @@ class Fakkel {
         $this->entry->setChannel($channelId);
 
         return $this;
-
+    }
+    
+    public function withPayload($payload)
+    {
+        $this->entry->setPayload($payload);
+        
+        return $this;
     }
     
     

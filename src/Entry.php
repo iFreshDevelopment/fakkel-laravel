@@ -17,6 +17,8 @@ class Entry
 
     private ?array $tags = [];
 
+    private $payload = null;
+
     private Configuration $configuration;
 
     public function __construct()
@@ -39,6 +41,11 @@ class Entry
     public function setChannel($channelId)
     {
         $this->channelId = $channelId;
+    }
+
+    public function setPayload($payload)
+    {
+        $this->payload = $payload;
     }
 
     public function setTimestamp(Carbon $timestamp)
@@ -87,6 +94,11 @@ class Entry
         if ( ! empty($this->tags))
         {
             $data['tags'] = $this->tags;
+        }
+
+        if (! empty($this->payload))
+        {
+            $data['payload'] = $this->payload;
         }
 
         return $data;
