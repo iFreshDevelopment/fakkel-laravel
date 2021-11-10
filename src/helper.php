@@ -2,7 +2,7 @@
 if (! function_exists('fakkel')) {
     function fakkel($channelId = null)
     {
-        $fakkelInstance = new Ifresh\Fakkel\Fakkel();
+        $fakkelInstance = new Ifresh\FakkelLaravel\Fakkel();
         if ($channelId) {
             $fakkelInstance->setChannel($channelId);
         }
