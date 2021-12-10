@@ -36,7 +36,7 @@ class Configuration
     
     public function getChannelId() : string
     {
-        return 'GDYIIN46UAC5AESOLQJD';
+        return '';
     }
     
     public function getTimeout() : int
