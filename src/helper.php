@@ -1,4 +1,5 @@
 <?php
+
 if (! function_exists('fakkel')) {
     function fakkel($channelId = null)
     {

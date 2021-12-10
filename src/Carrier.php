@@ -2,13 +2,13 @@
 
 namespace Ifresh\FakkelLaravel;
 
-use Illuminate\Support\Facades\Http;
 use Exception;
+use Illuminate\Support\Facades\Http;
 
 class Carrier
 {
-
     protected $response;
+
     protected $configuration;
 
     public function __construct(Entry $entry, int $timeout = null)
@@ -23,7 +23,7 @@ class Carrier
         try {
             $this->makeRequestToEndpoint();
         } catch (Exception $e) {
-            error_log('Fakkel error: ' . $e->getMessage());
+            error_log('Fakkel error: '.$e->getMessage());
         }
     }
 
@@ -42,7 +42,8 @@ class Carrier
         return $this->timeout ?? $this->configuration->getTimeout();
     }
 
-    protected function makeRequestToEndpoint(){
+    protected function makeRequestToEndpoint()
+    {
         $this->response = Http::timeout($this->getTimeout())
             ->withToken($this->configuration->getToken())
             ->acceptJson()
@@ -54,7 +55,5 @@ class Carrier
         if (! $this->isRequestRequestSuccessful()) {
             throw new \Exception('Request failed with status '.$this->response->status());
         }
-
     }
-
 }

@@ -4,14 +4,13 @@ namespace Ifresh\FakkelLaravel;
 
 class ResponseCode
 {
-    const SUCCESS = 200;
-    
-    const CREATED = 201;
-    
-    const ACCEPTED = 202;
-    
-    const BAD_REQUEST = 400;
-    
-    const UNAUTHORIZED = 403;
-        
+    public const SUCCESS = 200;
+
+    public const CREATED = 201;
+
+    public const ACCEPTED = 202;
+
+    public const BAD_REQUEST = 400;
+
+    public const UNAUTHORIZED = 403;
 }

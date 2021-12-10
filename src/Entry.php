@@ -3,11 +3,11 @@
 namespace Ifresh\FakkelLaravel;
 
 use Carbon\Carbon;
+use InvalidArgumentException;
 
 class Entry
 {
-
-    const TIMESTAMP_FORMAT = 'Y-m-d H:i:s';
+    public const TIMESTAMP_FORMAT = 'Y-m-d H:i:s';
 
     private ?string $channelId = null;
 
@@ -31,12 +31,10 @@ class Entry
         $this->message = $message;
     }
 
-
     public function addTag($tag)
     {
         $this->tags[] = $tag;
     }
-
 
     public function setChannel($channelId)
     {
@@ -55,10 +53,10 @@ class Entry
 
     private function getFormattedTimestamp()
     {
-        if (! $this->timestamp)
-        {
+        if (! $this->timestamp) {
             return null;
         }
+
         return $this->timestamp->format(self::TIMESTAMP_FORMAT);
     }
 
@@ -69,11 +67,11 @@ class Entry
 
     public function getChannelId()
     {
-        if ($this->channelId){
-            return $this->channelId;
+        if (! $this->channelId) {
+            throw new InvalidArgumentException('Channel ID is not set');
         }
 
-        return $this->configuration->getChannelId();
+        return $this->channelId;
     }
 
     public function getData()
@@ -82,26 +80,22 @@ class Entry
 
         $data['channel'] = $this->getChannelId();
 
-        if ($this->timestamp)
-        {
+        if ($this->timestamp) {
             $data['timestamp'] = $this->getFormattedTimestamp();
         }
 
-        if ($this->message){
+        if ($this->message) {
             $data['message'] = $this->getMessage();
         }
 
-        if ( ! empty($this->tags))
-        {
+        if (! empty($this->tags)) {
             $data['tags'] = $this->tags;
         }
 
-        if (! empty($this->payload))
-        {
+        if (! empty($this->payload)) {
             $data['payload'] = $this->payload;
         }
 
         return $data;
     }
-
 }

@@ -4,14 +4,14 @@ namespace Ifresh\FakkelLaravel;
 
 use Carbon\Carbon;
 
-class Fakkel {
-
+class Fakkel
+{
     protected ?string $channelId = null;
 
     protected ?int $timeout = null;
 
     public Entry $entry;
-    
+
     public function __construct()
     {
         $this->entry = new Entry();
@@ -20,27 +20,25 @@ class Fakkel {
     public function withTag(string $tag)
     {
         $this->entry->addTag($tag);
-        
+
         return $this;
     }
-    
+
     public function withTags(array $tags)
     {
-        foreach($tags as $tag)
-        {
+        foreach ($tags as $tag) {
             $this->entry->addTag($tag);
         }
 
         return $this;
     }
-    
+
     public function withTimestamp(Carbon $timestamp)
     {
         $this->entry->setTimestamp($timestamp);
-        
+
         return $this;
     }
-    
 
     public function send($message)
     {
@@ -49,16 +47,14 @@ class Fakkel {
         $carrier = new Carrier($this->entry, $this->timeout);
 
         return $carrier->send();
-
     }
-    
+
     public function timeout(int $seconds)
     {
         $this->timeout = $seconds;
-        
+
         return $this;
     }
-    
 
     public function setChannel($channelId)
     {
@@ -66,13 +62,11 @@ class Fakkel {
 
         return $this;
     }
-    
+
     public function withPayload($payload)
     {
         $this->entry->setPayload($payload);
-        
+
         return $this;
     }
-    
-    
 }
